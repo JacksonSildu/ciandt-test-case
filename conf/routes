@@ -1,0 +1,12 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+
+# Home page
+GET    /	                           				controllers.Application.index()
+GET    /check/:protocol								controllers.Application.checkProtocol(protocol: String)
+GET    /best/:name/:origin/:destiny/:autonomy       controllers.Application.getBestRoute(name: String, origin: String, destiny: String, autonomy: Double)
+POST   /send/:name                 					controllers.Application.sendMap(name: String)
+
+# Map static resources from the /public folder to the /assets URL path
+GET     /assets/*file               				controllers.Assets.at(path="/public", file)
