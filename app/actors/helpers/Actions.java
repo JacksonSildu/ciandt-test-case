@@ -1,25 +1,25 @@
 package actors.helpers;
 
 public abstract class Actions<T> {
-	public T entity;
+	public T model;
 
-	public Actions(T entity) {
-		this.entity = entity;
+	public Actions(T model) {
+		this.model = model;
 	}
 
 	public Actions() {
 	}
 
-	public Class<?> getEntityClass() {
-		return entity.getClass();
+	public Class<?> getModelClass() {
+		return model.getClass();
 	}
 
-	public T getEntity() {
-		return entity;
+	public T getModel() {
+		return model;
 	}
 
-	public void setEntity(T entity) {
-		this.entity = entity;
+	public void setModel(T entity) {
+		this.model = entity;
 	}
 
 }

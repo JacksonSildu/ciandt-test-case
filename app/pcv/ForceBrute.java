@@ -1,10 +1,9 @@
 package pcv;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import models.Path;
 import models.RouteMap;
+import play.Logger;
+import play.libs.Json;
 
 public class ForceBrute implements Algorithm {
 	private RouteMap route;
@@ -13,19 +12,15 @@ public class ForceBrute implements Algorithm {
 		this.route = route;
 	}
 
+	private Path checkBestPath(Path actualPath, Path bestPath) {
+		return bestPath == null || actualPath.getActualDistance() < bestPath.getActualDistance() ? ((Path) actualPath.clone()) : bestPath;
+	}
+
 	@Override
-	public Map<String, Path> processRoute() {
-		Map<String, Path> bestPath = new HashMap<>();
-		for (String destinyPoint : route.getPoints()) {
-			if (route.getInitialPoint().equals(destinyPoint)) {
-				continue;
-			}
-
-			Path best = processPath(getIntialPath(), destinyPoint, null);
-			bestPath.put(route.getInitialPoint() + destinyPoint, best);
-		}
-
-		return bestPath;
+	public Path processPath(String destinyPoint) {
+		Path path = processPath(this.getIntialPath(), destinyPoint, null);
+		Logger.debug(Json.toJson(path).toString());
+		return path;
 	}
 
 	private Path processPath(Path actualPath, String destinyPoint, Path bestPath) {
@@ -35,12 +30,11 @@ public class ForceBrute implements Algorithm {
 			} else if (route.getMap().containsKey(actualPath.getLastPath() + nextPoint)) {
 				double cost = route.getMap().get(actualPath.getLastPath() + nextPoint);
 				actualPath.addDistance(cost);
+				actualPath.addPath(nextPoint);
 
 				if (nextPoint.equals(destinyPoint)) {
-					actualPath.addPath(nextPoint);
 					bestPath = checkBestPath(actualPath, bestPath);
 				} else {
-					actualPath.addPath(nextPoint);
 					bestPath = this.processPath(actualPath, destinyPoint, bestPath);
 				}
 
@@ -54,13 +48,14 @@ public class ForceBrute implements Algorithm {
 
 	private Path getIntialPath() {
 		Path initialPath = new Path();
-		initialPath.addPath(route.getInitialPoint());
+		initialPath.addPath(route.getOrigin());
 
 		return initialPath;
 	}
 
-	private Path checkBestPath(Path actualPath, Path bestPath) {
-		return bestPath == null || actualPath.getActualDistance() < bestPath.getActualDistance() ? ((Path) actualPath.clone()) : bestPath;
+	@Override
+	public RouteMap getRoute() {
+		return route;
 	}
 
 }

@@ -1,9 +1,10 @@
 package pcv;
 
-import java.util.Map;
-
 import models.Path;
+import models.RouteMap;
 
 public interface Algorithm {
-	Map<String, Path> processRoute();
+	RouteMap getRoute();
+
+	Path processPath(String destinyPoint);
 }

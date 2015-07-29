@@ -7,7 +7,6 @@ import java.util.Set;
 
 public class Request {
 	private String				mapName;
-	private String				uuidProtocol;
 	private Map<String, Double>	defaultRoutes	= new HashMap<>();
 	private Set<String>			points			= new HashSet<>();
 
@@ -33,14 +32,6 @@ public class Request {
 
 	public void setPoints(Set<String> points) {
 		this.points = points;
-	}
-
-	public void setUuidProtocol(String uuidProtocol) {
-		this.uuidProtocol = uuidProtocol;
-	}
-
-	public String getUuidProtocol() {
-		return uuidProtocol;
 	}
 
 }

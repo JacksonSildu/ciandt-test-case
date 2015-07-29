@@ -1,0 +1,5 @@
+error.map.not.found=O mapa informado não foi encontrado.
+error.path.not.found=O caminho informado não foi encontrado.
+error.protocol.not.found=O Protocolo informado não foi encontrado.
+error.worker.failed=Houve um erro nos Workers.
+erro.route.manager.generic=Ocorreu um erro no processamento dos mapas:

@@ -4,7 +4,8 @@ import java.util.Iterator;
 import java.util.LinkedHashSet;
 
 public class Path implements Cloneable {
-	private LinkedHashSet<String>	path	= new LinkedHashSet<>();
+	private static final String		SEMICOLON	= ";";
+	private LinkedHashSet<String>	path		= new LinkedHashSet<>();
 	private String					initialPath;
 	private String					lastPath;
 	private double					actualDistance;
@@ -22,8 +23,8 @@ public class Path implements Cloneable {
 		this.lastPath = lastPath;
 		this.actualDistance = actualDistance;
 
-		for (char c : fullPath.toCharArray()) {
-			path.add(String.valueOf(c));
+		for (String s : fullPath.split(SEMICOLON)) {
+			path.add(s);
 		}
 
 	}
@@ -75,6 +76,7 @@ public class Path implements Cloneable {
 		for (Iterator<String> i = path.iterator(); i.hasNext();) {
 			String next = i.next();
 			builder.append(next);
+			builder.append(SEMICOLON);
 		}
 
 		return builder.toString().toUpperCase();

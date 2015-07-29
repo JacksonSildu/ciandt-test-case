@@ -11,6 +11,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.jayway.restassured.RestAssured;
 
 import models.ErrorMessage;
+import play.Logger;
 import play.libs.Json;
 import play.test.WithServer;
 
@@ -21,17 +22,19 @@ public class IntegrationErrorTest extends WithServer {
 	@Before
 	public void setUp() {
 		RestAssured.port = PORT;
+		Logger.debug("************ RUNNING INTEGRATION ERROR TESTS ************");
 	}
 	
 	@Test
-	public void mustBeMapNotFoundTest() {
+	public void mustBePathNotFoundTest() {
 		running(testServer(PORT), new Runnable() {
 			@Override
 			public void run() {
+				Logger.debug("************ CHECK PATH NOT FOUND. ************");
 				String best = RestAssured.expect()
 						.statusCode(400)
 						.when()
-						.get("/best/BH/A/D/10")
+						.get("/best/BH/A/F/10")
 						.body().asString();
 				
 				JsonNode json = Json.parse(best);
@@ -47,6 +50,7 @@ public class IntegrationErrorTest extends WithServer {
 		running(testServer(PORT), new Runnable() {
 			@Override
 			public void run() {
+				Logger.debug("************ CHECK ACTION NOT FOUND ************");
 				String best = RestAssured.expect()
 						.statusCode(404)
 						.when()

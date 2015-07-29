@@ -8,6 +8,7 @@ import akka.actor.Props;
 import akka.actor.UntypedActor;
 import entity.AbstractEntity;
 import models.Null;
+import play.Logger;
 import play.db.jpa.JPA;
 
 public class WorkerDataBaseActor extends UntypedActor {
@@ -18,7 +19,8 @@ public class WorkerDataBaseActor extends UntypedActor {
 	public void onReceive(Object message) throws Exception {
 		if (message instanceof Persist) {
 			Persist<?> request = (Persist<?>) message;
-			AbstractEntity<?> requestEntity = (AbstractEntity<?>) request.getEntity();
+			AbstractEntity<?> requestEntity = (AbstractEntity<?>) request.getModel();
+			Logger.debug(String.format("Persist or Update entity %s in database...", request.getModelClass().getName()));
 
 			JPA.withTransaction(() -> {
 				JPA.em().merge(requestEntity);
@@ -28,10 +30,13 @@ public class WorkerDataBaseActor extends UntypedActor {
 
 			Object result = null;
 			try {
+				Logger.debug("Find entity in DataBase...");
 				result = JPA.withTransaction(() -> {
 					if (request.getNamedQuery() != null) {
+						Logger.debug(String.format("Fidding by NamedQuery... NamedQuery: %s", request.getNamedQuery()));
 						return findByNamedQuery(request);
-					} else if (request.getEntity() != null) {
+					} else if (request.getModel() != null) {
+						Logger.debug("Fidding by entity primary key...");
 						return findById(request);
 					} else {
 						return null;
@@ -39,12 +44,13 @@ public class WorkerDataBaseActor extends UntypedActor {
 				});
 
 				if (result == null) {
+					Logger.debug("No Result found...");
 					result = new Null();
 				}
 
 				sender().tell(result, self());
 			} catch (Throwable e) {
-				e.printStackTrace();
+				Logger.error("Error in DataBase Access: ", e);
 				throw new RuntimeException(e);
 			}
 
@@ -57,7 +63,7 @@ public class WorkerDataBaseActor extends UntypedActor {
 	}
 
 	private Object findById(Find<?> request) {
-		AbstractEntity<?> requestEntity = (AbstractEntity<?>) request.getEntity();
+		AbstractEntity<?> requestEntity = (AbstractEntity<?>) request.getModel();
 		return JPA.em().find(requestEntity.getClass(), requestEntity.getId());
 	}
 

@@ -8,19 +8,25 @@ public class RouteMap implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private String				mapName;
-	private String				originPoint;
-	private Map<String, Double>	map;
+	private String				origin;
+	private String				destiny;
 	private Set<String>			points;
+	private Map<String, Double>	map;
 
-	public RouteMap(String name, String point, Map<String, Double> map, Set<String> points) {
-		this.originPoint = point;
+	public RouteMap(String name, String origin, Map<String, Double> map, Set<String> points) {
+		this.origin = origin;
 		this.map = map;
 		this.mapName = name;
 		this.points = points;
 	}
 
-	public String getInitialPoint() {
-		return originPoint;
+	public RouteMap(String name, String origin, Map<String, Double> map, Set<String> points, String destiny) {
+		this(name, origin, map, points);
+		this.destiny = destiny;
+	}
+
+	public String getOrigin() {
+		return origin;
 	}
 
 	public Map<String, Double> getMap() {
@@ -33,6 +39,14 @@ public class RouteMap implements Serializable {
 
 	public Set<String> getPoints() {
 		return points;
+	}
+
+	public String getDestiny() {
+		return destiny;
+	}
+
+	public void setDestiny(String destiny) {
+		this.destiny = destiny;
 	}
 
 }

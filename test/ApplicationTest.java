@@ -46,7 +46,7 @@ public class ApplicationTest {
 		RouteMap routeMap = new RouteMap("BH", "A", map, points);
 		Algorithm force = new ForceBrute(routeMap);
 
-		Path bestPath = force.processRoute().get("AD");
+		Path bestPath = force.processPath("D");
 
 		assertThat(bestPath.getActualDistance(), equalTo(25.0));
 	}
