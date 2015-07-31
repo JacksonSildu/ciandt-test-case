@@ -4,6 +4,12 @@ import play.Application;
 import play.GlobalSettings;
 import play.Logger;
 
+/**
+ * Global settings for application
+ * 
+ * @author Sildu
+ *
+ */
 public class Global extends GlobalSettings {
 
 	@Override

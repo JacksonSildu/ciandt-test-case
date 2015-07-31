@@ -3,6 +3,12 @@ package models;
 import java.util.Iterator;
 import java.util.LinkedHashSet;
 
+/**
+ * Class for store a Path
+ * 
+ * @author Sildu
+ *
+ */
 public class Path implements Cloneable {
 	private static final String		SEMICOLON	= ";";
 	private LinkedHashSet<String>	path		= new LinkedHashSet<>();
@@ -53,6 +59,11 @@ public class Path implements Cloneable {
 		this.actualDistance -= cost;
 	}
 
+	/**
+	 * Add a path
+	 * 
+	 * @param actualPath
+	 */
 	public void addPath(String actualPath) {
 
 		actualPath = actualPath.toUpperCase();
@@ -65,12 +76,22 @@ public class Path implements Cloneable {
 		lastPath = actualPath;
 	}
 
+	/**
+	 * Remove a path
+	 * 
+	 * @param pathToRemove
+	 */
 	public void removePath(String pathToRemove) {
 		pathToRemove = pathToRemove.toUpperCase();
 		path.remove(pathToRemove);
 		lastPath = (String) path.toArray()[path.size() - 1];
 	}
 
+	/**
+	 * Get all paths
+	 * 
+	 * @return
+	 */
 	public String getStringPath() {
 		StringBuilder builder = new StringBuilder();
 		for (Iterator<String> i = path.iterator(); i.hasNext();) {

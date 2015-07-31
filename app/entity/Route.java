@@ -10,6 +10,11 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.TableGenerator;
 
+/**
+ * 
+ * @author Sildu
+ *
+ */
 @Entity
 @Table(name = "ROUTE")
 public class Route extends AbstractEntity<Long>implements Serializable {

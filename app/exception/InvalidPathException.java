@@ -1,5 +1,10 @@
 package exception;
 
+/**
+ * 
+ * @author Sildu
+ *
+ */
 public class InvalidPathException extends RuntimeException {
 	private static final long serialVersionUID = 1L;
 

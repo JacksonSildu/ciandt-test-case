@@ -2,6 +2,11 @@ package models;
 
 import enums.StatusEnum;
 
+/**
+ * 
+ * @author Sildu
+ *
+ */
 public class StatusMap {
 	private String		name;
 	private StatusEnum	status;

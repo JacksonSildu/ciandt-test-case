@@ -10,6 +10,11 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.TableGenerator;
 
+/**
+ * 
+ * @author Sildu
+ *
+ */
 @Entity
 @Table(name = "BEST_PATH")
 public class BestRoute extends AbstractEntity<Long>implements Serializable {

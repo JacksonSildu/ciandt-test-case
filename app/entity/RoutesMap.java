@@ -14,6 +14,11 @@ import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+/**
+ * 
+ * @author Sildu
+ *
+ */
 @Entity
 @Table(name = "BEST_ROUTES_MAP")
 @NamedQueries({ @NamedQuery(name = "RoutesMap.findAll", query = "SELECT m FROM RoutesMap m") })

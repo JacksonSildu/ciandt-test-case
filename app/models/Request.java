@@ -5,6 +5,11 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
+/**
+ * 
+ * @author Sildu
+ *
+ */
 public class Request {
 	private String				mapName;
 	private Map<String, Double>	defaultRoutes	= new HashMap<>();

@@ -1,5 +1,10 @@
 package models;
 
+/**
+ * 
+ * @author Sildu
+ *
+ */
 public class ErrorMessage {
 	private Integer	code;
 	private String	message;

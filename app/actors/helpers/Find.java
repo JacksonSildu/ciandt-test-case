@@ -1,8 +1,15 @@
 package actors.helpers;
 
+/**
+ * Action to find data in database
+ * 
+ * @author Sildu
+ *
+ * @param <T>
+ */
 public class Find<T> extends Actions<T> {
 	private String namedQuery;
-	
+
 	public Find() {
 	}
 

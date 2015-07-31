@@ -14,6 +14,12 @@ import javax.inject.*;
 
 import models.ErrorMessage;
 
+/**
+ * Class to handle exceptions
+ * 
+ * @author Sildu
+ *
+ */
 public class ErrorHandler extends DefaultHttpErrorHandler {
 
 	@Inject
@@ -24,14 +30,14 @@ public class ErrorHandler extends DefaultHttpErrorHandler {
 	protected Promise<Result> onProdServerError(RequestHeader request, UsefulException exception) {
 		ErrorMessage error = new ErrorMessage(Results.internalServerError().status(), "A server error occurred: " + exception.getMessage());
 		String json = Json.toJson(error).toString();
-		
+
 		return Promise.<Result> pure(Results.internalServerError(json));
 	}
 
 	protected Promise<Result> onForbidden(RequestHeader request, String message) {
 		ErrorMessage error = new ErrorMessage(Results.forbidden().status(), "You're not allowed to access this resource.");
 		String json = Json.toJson(error).toString();
-		
+
 		return Promise.<Result> pure(Results.forbidden(json));
 	}
 
@@ -39,7 +45,7 @@ public class ErrorHandler extends DefaultHttpErrorHandler {
 	protected Promise<Result> onBadRequest(RequestHeader request, String message) {
 		ErrorMessage error = new ErrorMessage(Results.badRequest().status(), "Ocurred an error: " + message);
 		String json = Json.toJson(error).toString();
-		
+
 		return Promise.<Result> pure(Results.badRequest(json));
 	}
 
@@ -47,8 +53,8 @@ public class ErrorHandler extends DefaultHttpErrorHandler {
 	protected Promise<Result> onNotFound(RequestHeader request, String message) {
 		ErrorMessage error = new ErrorMessage(Results.notFound().status(), "Action not found");
 		String json = Json.toJson(error).toString();
-		
-		return Promise.<Result> pure(Results.notFound(json ));
+
+		return Promise.<Result> pure(Results.notFound(json));
 	}
-	
+
 }

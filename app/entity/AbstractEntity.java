@@ -1,5 +1,12 @@
 package entity;
 
+/**
+ * Abstract entity
+ * 
+ * @author Sildu
+ *
+ * @param <T>
+ */
 public abstract class AbstractEntity<T> {
 	protected T id;
 

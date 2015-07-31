@@ -1,5 +1,10 @@
 package models;
 
+/**
+ * 
+ * @author Sildu
+ *
+ */
 public class PathResponse {
 	private String	path;
 	private Double	distance;

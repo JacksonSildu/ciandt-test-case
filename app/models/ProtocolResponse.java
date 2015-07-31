@@ -1,5 +1,10 @@
 package models;
 
+/**
+ * 
+ * @author Sildu
+ *
+ */
 public class ProtocolResponse {
 	private String name;
 

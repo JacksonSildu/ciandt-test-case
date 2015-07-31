@@ -7,6 +7,11 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+/**
+ * 
+ * @author Sildu
+ *
+ */
 @Entity
 @Table(name = "SEQUENCES")
 public class Sequences implements Serializable {

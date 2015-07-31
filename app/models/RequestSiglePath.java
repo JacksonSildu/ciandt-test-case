@@ -1,5 +1,10 @@
 package models;
 
+/**
+ * 
+ * @author Sildu
+ *
+ */
 public class RequestSiglePath extends Request {
 	private String	origin;
 	private String	destiny;
