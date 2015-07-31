@@ -15,9 +15,9 @@ Resolução de problema de malha rodoviária (PCV), utilizando Java + Play + Akk
 
 ## Execução
 
-Os testes poderão ser executados tanto pela Eclipse, ou utilizando os comandos do play.
+Os testes poderão ser executados tanto pela Eclipse, ou utilizando os comandos do play. 
 
-* Pelo activator do play framework
+* Pelo activator do play framework. Neste caso, deverá ser utilizado um client REST para execução dos métodos.
 
 > [ciandt-test-case] $ activator run
 
@@ -41,6 +41,7 @@ C G 20
 B G 20
 H G 30
 ```
+
 #### http://localhost:9000/process/async/{nome do mapa}
 ##### Method: POST
 ##### Type: text/plain
@@ -65,3 +66,6 @@ Checa o Status atual do processamento do mapa
 ##### Method: GET
 Retorna a melhor rota para o usuario.
 > EX.: {"path":"A;B;G;M;Q;W;E1;F1;G1;","distance":130.0,"cost":13.0}
+
+
+
